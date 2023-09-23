@@ -1,5 +1,5 @@
 # Client configuration file
-file { '/.ssh/ssh_config'
+file { '/.ssh/ssh_config':
   ensure  => present,
-  contant => 'Host *\n\tIdentityFile ~/.ssh/school\n\tPasswordAuthentication No'
+  contant => 'Host * IdentityFile ~/.ssh/school PasswordAuthentication No'
 }
