@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configures nginx on new Ubuntu machine
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo rm -f /var/www/html/*
+echo "Hello World!" > hello_world.html
+echo "Ceci n'est pas une page" > 404.html
+sudo mv hello_world.html /var/www/html/
+sudo mv 404.html /var/www/html/
+
+conf="\tindex hello_world.html;\n\n\trewrite ^\/redirect_me http:\/\/youtube.com\/ permanent;\n\n\terror_page 404 \/404.html;"
+
+sudo sed -i "s/^[[:space:]]*index.*/$conf/" /etc/nginx/sites-available/default
+sudo service nginx restart
