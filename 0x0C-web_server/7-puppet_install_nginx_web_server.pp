@@ -1,3 +1,4 @@
+# conf nginx
 package { 'nginx' :
   ensure => installed,
 }
@@ -9,7 +10,7 @@ file { '/var/www/html/hello_world.html' :
 
 file { '/var/www/html/404.html' :
   ensure  => present,
-  content => 'Ceci n'est pas une page',
+  content => 'Ceci n\'est pas une page',
 }
 
 $conf = "
@@ -32,6 +33,6 @@ server {
 }
 "
 
-file { '/etc/nginx/sites-available/default'
+file { '/etc/nginx/sites-available/default' :
   content => $conf,
 }
