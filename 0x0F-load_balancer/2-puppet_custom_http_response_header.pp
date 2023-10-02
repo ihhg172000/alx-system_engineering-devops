@@ -8,27 +8,11 @@ package { 'nginx' :
   ensure => installed,
 }
 
-$conf = "
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
-
-	add_header X-Served-By \$hostname;
-
-        server_name _;
-
-        location / {
-                try_files \$uri \$uri/ =404;
-        }
+exec { 'add header' :
+  command  => 'sed -i "/listen 80 default_server;/a add_header X-Served-By $hostname;" /etc/nginx/sites-available/default;',
+  provider => 'shell',
 }
-"
 
-file { '/etc/nginx/sites-available/default' :
-  content => $conf,
-}
 
 exec { 'nginx restart' :
   command  => 'service nginx restart',
