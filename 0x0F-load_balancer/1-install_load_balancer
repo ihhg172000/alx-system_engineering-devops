@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # configures HAproxy
 sudo apt-get -y update
-suso apt-get -y upgrade
 
 sudo apt-get -y install --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
