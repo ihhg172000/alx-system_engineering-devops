@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# configures HAproxy
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.0
+sudo apt-get install haproxy=2.0.\*
+
+sudo printf "
+frontend my_frontend
+	bind :80
+	default_backend my_backend
+
+backend my_backend
+	server web_1 54.237.72.179:80
+	server web_2 52.23.245.31:80
+" | tee -a /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
+
