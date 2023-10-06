@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# display information about subdomains
+if [ ${#} -lt 1 ]
+
+then
+	exit 1
+fi
+
+dig_subdomain () {
+	dig "${2}.${1}" | grep "^${2}.${1}." | sed "s/^${2}.${1}./${2}/g" | awk '{print "The subdomain " $1 " is a " $4 " record and points to " $5}'
+}
+
+if [ ${#} -lt 2 ]
+then
+	subdomains=("www" "lb-01" "web-01" "web-02")
+
+	for subdomain in "${subdomains[@]}"
+	do
+		dig_subdomain "${1}" "${subdomain}"
+	done
+
+	exit
+fi
+
+dig_subdomain "${1}" "${2}"
