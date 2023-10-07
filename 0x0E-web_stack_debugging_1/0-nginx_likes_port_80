@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# fix nginx
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx start
