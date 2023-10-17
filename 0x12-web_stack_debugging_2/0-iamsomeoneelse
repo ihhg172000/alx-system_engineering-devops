@@ -4,5 +4,5 @@ if [ ${#} -lt 1 ]
 then
 	whoami
 else
-	su "${1}" -c "whoami"
+	sudo -u "${1}" whoami
 fi
