@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
  using this REST API, for a given employee ID,
- returns information about his/her TODO list progress.
+ exports information about his/her TODO list progress to json file.
 """
 import json
 from requests import get
